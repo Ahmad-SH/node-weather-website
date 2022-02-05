@@ -1,0 +1,4 @@
+//query string
+/products?key=value
+products?search=games&rating=5
+//log// { search: 'games', rating: '5' }
