@@ -3,10 +3,11 @@ const express = require("express");
 // to use hbs partials
 const hbs = require("hbs");
 const dataForcast = require("./geocode");
+const { env } = require("process");
 
 const partialsPath = path.join(__dirname, "../templates/partials");
 const app = express(); // does not take any args
-
+const port = process.env.PORT || 5000;
 //define paths for express config
 const publicDirPath = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
@@ -94,4 +95,6 @@ app.get("*", (req, res) => {
     name: "Ahmad",
   });
 });
-app.listen(3000);
+app.listen(port, ()=>{
+  console.log('server is running on port : '+ port);
+});

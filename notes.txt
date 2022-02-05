@@ -2,3 +2,45 @@
 /products?key=value
 products?search=games&rating=5
 //log// { search: 'games', rating: '5' }
+
+
+
+// use ssh for deploying to github, heroku
+
+ssh-Keygen -t rsa -b 4096 -C "ahmadsh28@gmail.com"
+use enter enter to finish
+run this : ls -a -l ~/.ssh -->
+--> o/p :
+drwx------   4 ahmadalshaar  staff   128 Feb  5 13:16 .
+drwxr-xr-x+ 68 ahmadalshaar  staff  2176 Feb  5 13:16 ..
+-rw-------   1 ahmadalshaar  staff  3381 Feb  5 13:16 id_rsa
+-rw-r--r--   1 ahmadalshaar  staff   745 Feb  5 13:16 id_rsa.pub
+
+run this : eval "$(ssh-agent -s)"  ---> o/p--> Agent pid 1811
+run this and point to .pub file: ssh-add -K ~/.ssh/id_rsa
+o/p --> Identity added: /Users/ahmadalshaar/.ssh/id_rsa (ahmadsh28@gmail.com)
+
+** go to gitHub and after initilizing a repo
+ go to settings --> ssh and add ssh key ,
+ - add any name
+ - add the content of id_rsa by copying it from terminal $ cat ~/.ssh/id_rsa.pub
+ - run this in terminal :  ssh -T git@github.com 
+ - type : yes 
+ - HERE WE CAN use : $$$$$ git push to github
+ - Done!!!
+
+
+############ SET UP SSH KEY with HEROKU ##########
+## after creating the ssh key from above RUN THIS LINE in the terminal
+$heroku keys:add
+
+#### create app and upload to heroku
+## create application 
+$heroku create shaar-weather-app
+## modify package.json 
+  "scripts": {
+ -->   "start":"node src/app.js"
+  }
+## modify PORT
+## modify url in fetch()
+
